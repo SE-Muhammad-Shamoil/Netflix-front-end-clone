@@ -3,153 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Clone</title>
+    <title>Netflix Clone UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        netflix: '#141414',
+                        netflixRed: '#e50914'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
 </head>
-<body class="bg-black text-white">
-                                                                <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="h-8 md:h-10">
-            </div>
-            <div class="flex items-center space-x-4">
-                <div class="hidden md:flex space-x-4">
-                    <a href="#" class="text-white hover:text-gray-300">Home</a>
-                    <a href="#" class="text-white hover:text-gray-300">TV Shows</a>
-                    <a href="#" class="text-white hover:text-gray-300">Movies</a>
-                    <a href="#" class="text-white hover:text-gray-300">New & Popular</a>
-                    <a href="#" class="text-white hover:text-gray-300">My List</a>
+<body class="bg-netflix text-white font-sans overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gradient-to-b from-black/80 to-transparent" id="navbar">
+        <div class="container mx-auto px-4 md:px-12 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="h-6 md:h-8 cursor-pointer">
+                <div class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#" class="text-white hover:text-gray-300 transition">Home</a>
+                    <a href="#" class="text-gray-200 hover:text-white transition">TV Shows</a>
+                    <a href="#" class="text-gray-200 hover:text-white transition">Movies</a>
+                    <a href="#" class="text-gray-200 hover:text-white transition">New & Popular</a>
+                    <a href="#" class="text-gray-200 hover:text-white transition">My List</a>
+                    <a href="#" class="text-gray-200 hover:text-white transition">Browse by Languages</a>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <div class="relative">
-                        <button class="text-white hover:text-gray-300">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="relative">
-                        <button class="text-white hover:text-gray-300">
-                            <i class="fas fa-bell"></i>
-                        </button>
-                    </div>
-                    <div class="relative">
-                        <button class="text-white hover:text-gray-300 flex items-center">
-                            <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" alt="Profile" class="h-8 w-8 rounded">
-                            <i class="fas fa-caret-down ml-1"></i>
-                        </button>
-                    </div>
+            </div>
+            <div class="flex items-center space-x-6">
+                <button class="text-white hover:text-gray-300 transition">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+                <button class="text-white hover:text-gray-300 transition hidden md:block text-sm font-medium">
+                    Children
+                </button>
+                <div class="relative group cursor-pointer">
+                    <button class="text-white hover:text-gray-300 transition">
+                        <i class="fas fa-bell text-xl"></i>
+                    </button>
+                </div>
+                <div class="relative flex items-center group cursor-pointer space-x-2">
+                    <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" alt="Profile" class="h-8 w-8 rounded">
+                    <i class="fas fa-caret-down text-white text-xs transition duration-300 group-hover:rotate-180"></i>
                 </div>
             </div>
         </div>
     </nav>
 
-                                                                <!-- Hero Section -->
-    <section class="hero relative">
-        <div class="absolute top-0 left-0 right-0 h-1/4 bg-gradient-to-b from-black to-transparent z-10"></div>
-        <div class="container mx-auto px-4 h-full flex flex-col justify-center relative z-20">
-            <div class="max-w-3xl">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Stranger Things</h1>
-                <p class="text-lg md:text-xl mb-6">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.</p>
+    <!-- Hero Section -->
+    <section class="hero relative w-full h-[85vh]">
+        <div class="absolute inset-0 bg-gradient-to-r from-netflix via-netflix/50 to-transparent z-10 w-3/4"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-netflix to-transparent z-10"></div>
+        
+        <div class="container mx-auto px-4 md:px-12 h-full flex flex-col justify-center relative z-20">
+            <div class="max-w-2xl mt-20">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg tracking-tight">Stranger Things</h1>
+                <p class="text-base md:text-xl mb-8 drop-shadow-md text-gray-100 font-medium line-clamp-3">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl. They begin a journey that will test their friendship and lives.</p>
                 <div class="flex space-x-4">
-                    <button class="bg-white text-black px-6 py-2 rounded flex items-center hover:bg-opacity-80 transition">
-                        <i class="fas fa-play mr-2"></i> Play
+                    <button class="bg-white text-black px-6 md:px-8 py-2 md:py-3 rounded md:text-xl font-bold flex items-center hover:bg-opacity-80 transition transform hover:scale-105">
+                        <i class="fas fa-play mr-3"></i> Play
                     </button>
-                    <button class="bg-gray-600 bg-opacity-70 text-white px-6 py-2 rounded flex items-center hover:bg-opacity-50 transition">
-                        <i class="fas fa-info-circle mr-2"></i> More Info
+                    <button class="bg-gray-500 bg-opacity-70 text-white px-6 md:px-8 py-2 md:py-3 rounded md:text-xl font-bold flex items-center hover:bg-opacity-50 transition transform hover:scale-105 backdrop-blur-sm">
+                        <i class="fas fa-info-circle mr-3"></i> More Info
                     </button>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-black to-transparent z-10"></div>
+        
+        <div class="absolute bottom-32 right-0 z-20 flex items-center">
+            <button id="mute-btn" class="border border-gray-400 text-gray-300 p-3 rounded-full hover:bg-white/10 transition mr-4 backdrop-blur-md">
+                <i class="fas fa-volume-mute text-lg"></i>
+            </button>
+            <div class="bg-gray-800/80 border-l-[3px] border-white text-white px-4 py-2 text-lg font-medium backdrop-blur-md">
+                16+
+            </div>
+        </div>
     </section>
 
-                                                            <!-- Main Content -->
-    <main class="relative z-20 -mt-20">
-                                                                                    <!-- Popular on Netflix -->
-        <section class="container mx-auto px-4 mb-10">
-            <h2 class="text-xl md:text-2xl font-bold mb-4">Popular on Netflix</h2>
-            <div class="movie-row" id="popular-row">
-            </div>
-        </section>
-
-                                                                                    <!-- Trending Now -->
-        <section class="container mx-auto px-4 mb-10">
-            <h2 class="text-xl md:text-2xl font-bold mb-4">Trending Now</h2>
-            <div class="movie-row" id="trending-row">
-            </div>
-        </section>
-
-                                                                                    <!-- Continue Watching -->
-        <section class="container mx-auto px-4 mb-10">
-            <h2 class="text-xl md:text-2xl font-bold mb-4">Continue Watching</h2>
-            <div class="movie-row" id="continue-row">
-            </div>
-        </section>
-
-                                                                                    <!-- New Releases -->
-        <section class="container mx-auto px-4 mb-10">
-            <h2 class="text-xl md:text-2xl font-bold mb-4">New Releases</h2>
-            <div class="movie-row" id="new-row">
-            </div>
-        </section>
+    <!-- Main Content -->
+    <main class="relative z-20 -mt-8 pb-10">
+        <!-- Reusable structure for rows -->
+        <div id="main-content"></div>
     </main>
 
-                                                                <!-- Footer -->
-    <footer class="bg-black text-gray-400 py-10">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-white text-lg mb-4">Questions? Email Shamoil004@gmail.com</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div>
-                            <ul class="space-y-2">
-                                <li><a href="#" class="hover:underline">FAQ</a></li>
-                                <li><a href="#" class="hover:underline">Investor Relations</a></li>
-                                <li><a href="#" class="hover:underline">Privacy</a></li>
-                                <li><a href="#" class="hover:underline">Speed Test</a></li>
-                            </ul>
+    <!-- Footer -->
+    <footer class="bg-netflix text-gray-400 py-16">
+        <div class="container mx-auto px-4 md:px-12 max-w-5xl">
+            <!-- Social -->
+            <div class="flex space-x-6 mb-8 text-2xl text-white">
+                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-youtube"></i></a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-sm">
+                <div>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:underline">Audio Description</a></li>
+                        <li><a href="#" class="hover:underline">Investor Relations</a></li>
+                        <li><a href="#" class="hover:underline">Legal Notices</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:underline">Help Center</a></li>
+                        <li><a href="#" class="hover:underline">Jobs</a></li>
+                        <li><a href="#" class="hover:underline">Cookie Preferences</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:underline">Gift Cards</a></li>
+                        <li><a href="#" class="hover:underline">Terms of Use</a></li>
+                        <li><a href="#" class="hover:underline">Corporate Information</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:underline">Media Center</a></li>
+                        <li><a href="#" class="hover:underline">Privacy</a></li>
+                        <li><a href="#" class="hover:underline">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="border border-gray-600 px-4 py-2 flex items-center hover:border-white transition mb-6 text-sm">
+                Service Code
+            </button>
+            <p class="mt-4 text-xs text-gray-500">&copy; 1997-2026 Netflix, Inc.</p>
+        </div>
+    </footer>
+
+    <!-- Video Modal overlay placeholder -->
+    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-4xl h-[60vh] bg-black border border-gray-800 rounded-lg shadow-2xl scale-95 transition-transform duration-300" id="video-modal-content">
+            <button id="close-modal" class="absolute -top-10 right-0 text-white hover:text-gray-300 text-3xl transition transform hover:rotate-90">
+                &times;
+            </button>
+            <div class="w-full h-full flex items-center justify-center bg-gray-900 overflow-hidden relative group">
+                <i class="fas fa-play text-6xl text-white/50 group-hover:text-netflixRed transition duration-300 cursor-pointer"></i>
+                <div class="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-black to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="h-1 bg-gray-600 w-full mb-3 rounded overflow-hidden">
+                        <div class="h-full bg-netflixRed w-1/3"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-white">
+                        <div class="flex space-x-4">
+                            <i class="fas fa-pause cursor-pointer"></i>
+                            <i class="fas fa-volume-up cursor-pointer"></i>
                         </div>
-                        <div>
-                            <ul class="space-y-2">
-                                <li><a href="#" class="hover:underline">Help Center</a></li>
-                                <li><a href="#" class="hover:underline">Jobs</a></li>
-                                <li><a href="#" class="hover:underline">Cookie Preferences</a></li>
-                                <li><a href="#" class="hover:underline">Legal Notices</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="space-y-2">
-                                <li><a href="#" class="hover:underline">Account</a></li>
-                                <li><a href="#" class="hover:underline">Ways to Watch</a></li>
-                                <li><a href="#" class="hover:underline">Corporate Information</a></li>
-                                <li><a href="#" class="hover:underline">Only on Netflix</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="space-y-2">
-                                <li><a href="#" class="hover:underline">Media Center</a></li>
-                                <li><a href="#" class="hover:underline">Terms of Use</a></li>
-                                <li><a href="#" class="hover:underline">Contact Us</a></li>
-                            </ul>
+                        <div class="flex space-x-4">
+                            <i class="fas fa-expand cursor-pointer"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-8">
-                <button class="border border-gray-600 px-4 py-2 flex items-center hover:border-white transition">
-                    <i class="fas fa-globe mr-2"></i> English
-                    <i class="fas fa-caret-down ml-2"></i>
-                </button>
-                <p class="mt-4 text-sm">Netflix Pakistan </p>
+            <div class="p-6 bg-[#181818] rounded-b-lg">
+                <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Movie Title</h3>
+                <div class="flex items-center space-x-4 text-sm mb-4">
+                    <span class="text-green-500 font-bold">98% Match</span>
+                    <span class="border border-gray-600 px-1">16+</span>
+                    <span>2022</span>
+                    <span class="border border-gray-600 px-1 text-xs rounded">HD</span>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    
-
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script> <!-- Connecting script.js -->
 </html>

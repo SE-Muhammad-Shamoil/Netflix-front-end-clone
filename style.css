@@ -1,65 +1,190 @@
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
     url("https://cdn.wallpapersafari.com/24/74/zgeTuV.jpg");
   background-size: cover;
   background-position: center;
-  height: 100vh;
+}
+
+/* Movie row and scroller */
+.row-container {
+    position: relative;
+    padding: 0 4%;
+    margin-bottom: 3vw;
+}
+
+.row-header {
+    font-size: 1.4vw;
+    color: #e5e5e5;
+    font-weight: 700;
+    margin: 0 4% 0.5em 4%;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.slider {
+    position: relative;
+    z-index: 1;
+}
+
+.handle {
+    background: rgba(20, 20, 20, 0.5);
+    width: 4%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background 0.3s;
+    border-radius: 4px;
+}
+
+.slider:hover .handle {
+    opacity: 1;
+}
+
+.handle:hover {
+    background: rgba(20, 20, 20, 0.8);
+}
+
+.handle.left-handle {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    left: 0;
+}
+
+.handle.right-handle {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    right: 0;
 }
 
 .movie-row {
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 20px 0;
+  padding: 1vw 0;
+  gap: 0.5vw;
 }
 
 .movie-row::-webkit-scrollbar {
   display: none;
 }
 
-.movie-card {
-  flex: 0 0 auto;
-  width: 220px;
-  margin-right: 15px;
-  transition: transform 0.3s;
-  position: relative;
+.movie-row {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
+.movie-card {
+  flex: 0 0 calc(100% / 6 - 0.5vw); /* approx 6 items on wide */
+  min-width: 180px;
+  position: relative;
+  border-radius: 4px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Hover effect mechanics for Netflix card */
 .movie-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.4) translateY(-10%);
+  z-index: 99;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
 }
 
 .movie-card img {
   width: 100%;
+  height: auto;
   border-radius: 4px;
+  transition: border-radius 0.4s ease;
+}
+
+.movie-card:hover img {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .movie-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: #181818;
   color: white;
-  padding: 10px;
-  transform: translateY(100%);
-  transition: transform 0.3s;
+  padding: 1rem;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
 }
 
 .movie-card:hover .movie-info {
-  transform: translateY(0);
+  opacity: 1;
+  transform: scaleY(1);
 }
 
 .nav-scroll {
-  background-color: rgba(0, 0, 0, 0.9);
-  transition: background-color 0.3s;
+  background-color: #141414 !important;
+  background-image: none !important;
+}
+
+.card-dropdown {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.movie-card:hover .card-dropdown {
+    opacity: 1;
+}
+
+/* Transitions for dynamic scaling and spacing */
+.movie-row:hover .movie-card {
+    opacity: 0.6;
+}
+
+.movie-row .movie-card:hover {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .movie-card {
+        flex: 0 0 calc(100% / 4 - 0.5vw);
+    }
 }
 
 @media (max-width: 768px) {
-  .movie-card {
-    width: 150px;
-  }
+    .movie-card {
+        flex: 0 0 calc(100% / 3 - 0.5vw);
+    }
+    .hero {
+        height: 60vh;
+    }
+    .row-header {
+        font-size: 4vw;
+        margin-bottom: 2vw;
+    }
+    .movie-card:hover {
+        transform: scale(1.2) translateY(-5%);
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-card {
+        flex: 0 0 calc(100% / 2 - 0.5vw);
+    }
 }

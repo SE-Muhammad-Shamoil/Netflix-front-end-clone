@@ -1,0 +1,11 @@
+# Netflix Clone UI and Functionality Improvements
+
+## 2026-03-08: UI enhancements and functionality addition
+- Changed the main background to `#141414` (Netflix's actual background color).
+- Improved Navbar to fade into a solid background instead of transparent black.
+- Enhanced the hero section with a nicer gradient and added a mock "Volume Control" button.
+- Re-designed the Movie Cards to scale up on hover and display details in a more Netflix-accurate UI (including Play, Add to List, Like buttons).
+- Added slider buttons (left and right arrows) to scroll the movie rows horizontally, similar to true Netflix experience.
+- Implemented JS state to toggle "My List" icon (plus to checkmark) and "Like" icon (empty to solid).
+- Improved the footer to better match modern streaming platforms.
+- General typography and spacing adjustments.
