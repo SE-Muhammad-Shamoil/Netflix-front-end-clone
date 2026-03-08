@@ -1,6 +1,6 @@
 # Netflix Clone UI and Functionality Improvements
 
-## 2026-03-08: UI enhancements and functionality addition
+## 2026-03-08: Portfolio Polish, UI enhancements, and functionality additions
 - Changed the main background to `#141414` (Netflix's actual background color).
 - Improved Navbar to fade into a solid background instead of transparent black.
 - Enhanced the hero section with a nicer gradient and added a mock "Volume Control" button.
@@ -9,3 +9,16 @@
 - Implemented JS state to toggle "My List" icon (plus to checkmark) and "Like" icon (empty to solid).
 - Improved the footer to better match modern streaming platforms.
 - General typography and spacing adjustments.
+- **Search System**: Created an active transition search bar that hides standard hero/rows and injects dynamic search grid results.
+- **Mock API Status UI**: Added skeleton loaders transitioning into real content mimicking asynchronous API requests.
+- **Hero Slider Rotation**: Added repeating interval logic replacing background images and content dynamically after brief transitions.
+- **Persistent "My List" Cache**: LocalStorage array functionality created handling user click logic ensuring specific added movies reload seamlessly on page refresh.
+- **Modal Viewers with Youtube Iframes**: Wired modal to load real metadata details, cast information, and embed generic Netflix series/movie YouTube trailers acting as pseudo media players.
+- **Submenus**: Built out interactive sub-menus for "Profiles" scaling off hover logic.
+
+## 2026-03-08: Video Player and Responsive UI Bug Fixes
+- **Standalone Video Player View**: Created a third "Player View" SPA state mimicking a full video playback screen with trailer embedding, timeline scrubbing mocks, custom Netflix overlaid icons, skip-intro overlays, and interactive hover mechanics.
+- **Hero Clipping Fix**: Adjusted padding (`pt-24 mt-32`) to the Hero text containers preventing the Hero content from colliding and overlapping with the transparent fixed navigation bar.
+- **Movie Row Drop-down Constraints**: Set explicit outer padding blocks on the scrollable row rails. This allows the sophisticated `scaleY()` CSS hovers for movie descriptions to cleanly render below scaled cards without clipping within `overflow-x: auto` boundaries.
+- **Navigation Routing**: Attached a `goHome()` function globally to the Netflix logo and Text header. This resets scroll to the very top and accurately cascades a mock reset event on the `<input>` element guaranteeing the search-grid gracefully transitions back to standard movie rows.
+- **Floating Artifact Cleanup**: Shifted `absolute` volume controls and maturity indicators out of the overlapping scroll lane so hover clicks successfully execute trigger events.

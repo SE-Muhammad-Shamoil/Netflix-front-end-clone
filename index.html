@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Clone UI</title>
+    <title>Netflix Clone UI Portfolio</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,164 +18,283 @@
             }
         }
     </script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-netflix text-white font-sans overflow-x-hidden">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gradient-to-b from-black/80 to-transparent" id="navbar">
-        <div class="container mx-auto px-4 md:px-12 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-8">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="h-6 md:h-8 cursor-pointer">
-                <div class="hidden md:flex space-x-6 text-sm font-medium">
-                    <a href="#" class="text-white hover:text-gray-300 transition">Home</a>
-                    <a href="#" class="text-gray-200 hover:text-white transition">TV Shows</a>
-                    <a href="#" class="text-gray-200 hover:text-white transition">Movies</a>
-                    <a href="#" class="text-gray-200 hover:text-white transition">New & Popular</a>
-                    <a href="#" class="text-gray-200 hover:text-white transition">My List</a>
-                    <a href="#" class="text-gray-200 hover:text-white transition">Browse by Languages</a>
+<body class="bg-netflix text-white font-sans overflow-x-hidden select-none">
+
+    <!-- 1. PROFILE SELECTION VIEW -->
+    <div id="profile-view" class="flex flex-col items-center justify-center fixed inset-0 bg-[#141414] z-[200] transition-transform duration-700">
+        <div class="absolute top-6 left-12">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="h-8">
+        </div>
+        <h1 class="text-white text-3xl md:text-5xl mt-10 mb-8 font-medium">Who's watching?</h1>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-16 px-4">
+            <div class="flex flex-col items-center group cursor-pointer profile-btn" onclick="goToBrowseView()">
+                <div class="w-24 h-24 md:w-36 md:h-36 rounded bg-red-600 overflow-hidden ring-4 ring-transparent group-hover:ring-white transition duration-300 mb-4 scale-95 group-hover:scale-100">
+                    <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" class="w-full h-full object-cover">
                 </div>
+                <span class="text-gray-500 group-hover:text-white transition text-lg md:text-xl">Shamoil</span>
             </div>
-            <div class="flex items-center space-x-6">
-                <button class="text-white hover:text-gray-300 transition">
-                    <i class="fas fa-search text-xl"></i>
-                </button>
-                <button class="text-white hover:text-gray-300 transition hidden md:block text-sm font-medium">
-                    Children
-                </button>
-                <div class="relative group cursor-pointer">
-                    <button class="text-white hover:text-gray-300 transition">
-                        <i class="fas fa-bell text-xl"></i>
-                    </button>
+            <div class="flex flex-col items-center group cursor-pointer profile-btn" onclick="goToBrowseView()">
+                <div class="w-24 h-24 md:w-36 md:h-36 rounded overflow-hidden ring-4 ring-transparent group-hover:ring-white transition duration-300 mb-4 scale-95 group-hover:scale-100">
+                    <img src="https://i.pinimg.com/236x/8b/c2/f7/8bc2f7e02df357285a73e61dc6bf5e22.jpg" class="w-full h-full object-cover">
                 </div>
-                <div class="relative flex items-center group cursor-pointer space-x-2">
-                    <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" alt="Profile" class="h-8 w-8 rounded">
-                    <i class="fas fa-caret-down text-white text-xs transition duration-300 group-hover:rotate-180"></i>
+                <span class="text-gray-500 group-hover:text-white transition text-lg md:text-xl">Kids</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="w-24 h-24 md:w-36 md:h-36 rounded overflow-hidden ring-2 ring-transparent bg-transparent group-hover:bg-white group-hover:text-black transition duration-300 mb-4 flex items-center justify-center scale-95 group-hover:scale-100">
+                    <i class="fas fa-plus text-5xl md:text-6xl text-gray-500 group-hover:text-black transition"></i>
                 </div>
+                <span class="text-gray-500 group-hover:text-white transition text-lg md:text-xl">Add Profile</span>
             </div>
         </div>
-    </nav>
+        <button class="border border-gray-500 text-gray-500 px-6 md:px-8 py-2 md:py-3 hover:border-white hover:text-white transition tracking-widest uppercase mb-10 text-sm md:text-base font-medium">Manage Profiles</button>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero relative w-full h-[85vh]">
-        <div class="absolute inset-0 bg-gradient-to-r from-netflix via-netflix/50 to-transparent z-10 w-3/4"></div>
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-netflix to-transparent z-10"></div>
-        
-        <div class="container mx-auto px-4 md:px-12 h-full flex flex-col justify-center relative z-20">
-            <div class="max-w-2xl mt-20">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg tracking-tight">Stranger Things</h1>
-                <p class="text-base md:text-xl mb-8 drop-shadow-md text-gray-100 font-medium line-clamp-3">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl. They begin a journey that will test their friendship and lives.</p>
-                <div class="flex space-x-4">
-                    <button class="bg-white text-black px-6 md:px-8 py-2 md:py-3 rounded md:text-xl font-bold flex items-center hover:bg-opacity-80 transition transform hover:scale-105">
-                        <i class="fas fa-play mr-3"></i> Play
-                    </button>
-                    <button class="bg-gray-500 bg-opacity-70 text-white px-6 md:px-8 py-2 md:py-3 rounded md:text-xl font-bold flex items-center hover:bg-opacity-50 transition transform hover:scale-105 backdrop-blur-sm">
-                        <i class="fas fa-info-circle mr-3"></i> More Info
-                    </button>
+    <!-- 2. MAIN BROWSE VIEW -->
+    <div id="browse-view" class="hidden transition-opacity duration-1000 opacity-0 relative z-10">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gradient-to-b from-black/80 to-transparent" id="navbar">
+            <div class="container mx-auto px-4 md:px-12 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="h-5 md:h-7 cursor-pointer" onclick="goHome()">
+                    <div class="hidden md:flex space-x-6 text-sm font-medium">
+                        <a href="#" class="text-white hover:text-gray-300 transition font-bold" onclick="goHome()">Home</a>
+                        <a href="#" class="text-gray-200 hover:text-white transition">TV Shows</a>
+                        <a href="#" class="text-gray-200 hover:text-white transition">Movies</a>
+                        <a href="#" class="text-gray-200 hover:text-white transition">New & Popular</a>
+                        <a href="#" class="text-gray-200 hover:text-white transition" id="nav-my-list">My List</a>
+                        <a href="#" class="text-gray-200 hover:text-white transition">Browse by Languages</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="search-box flex items-center bg-black/0 border border-transparent transition-all duration-300 px-2 py-1 rounded" id="search-container">
+                        <button id="search-btn" class="text-white hover:text-gray-300 transition focus:outline-none">
+                            <i class="fas fa-search text-xl"></i>
+                        </button>
+                        <input type="text" id="search-input" placeholder="Titles, people, genres" class="bg-transparent text-white text-sm outline-none w-0 transition-all duration-300 opacity-0 placeholder-gray-400">
+                        <button id="clear-search-btn" class="hidden text-white hover:text-gray-300 transition ml-2 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="text-white hover:text-gray-300 transition hidden lg:block text-sm font-medium">Children</button>
+                    
+                    <div class="relative group cursor-pointer hidden md:block">
+                        <button class="text-white hover:text-gray-300 transition">
+                            <i class="fas fa-bell text-xl"></i>
+                        </button>
+                        <div class="absolute top-full right-0 mt-4 w-72 bg-black/95 border border-gray-800 rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="p-4 text-center text-gray-400 text-sm font-bold border-b border-gray-800">No new notifications</div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex items-center group cursor-pointer space-x-2" id="profile-menu">
+                        <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" id="nav-profile-img" alt="Profile" class="h-8 w-8 rounded">
+                        <i class="fas fa-caret-down text-white text-xs transition duration-300 group-hover:rotate-180"></i>
+                        <div class="absolute top-full right-0 mt-4 w-48 bg-black/95 border border-gray-800 rounded py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="px-4 py-2 hover:bg-gray-800 flex items-center space-x-3 text-sm transition" onclick="goToProfileView()">
+                                <img src="https://i.pinimg.com/236x/8b/c2/f7/8bc2f7e02df357285a73e61dc6bf5e22.jpg" class="h-7 w-7 rounded" alt="">
+                                <span>Switch to Kids</span>
+                            </div>
+                            <div class="border-t border-gray-700 my-2"></div>
+                            <a href="#" class="block px-4 py-2 hover:underline text-sm text-gray-300 hover:text-white transition">Account</a>
+                            <a href="#" class="block px-4 py-2 hover:underline text-sm text-gray-300 hover:text-white transition border-t border-gray-700 mt-2 pt-3" onclick="goToProfileView()">Sign out of Netflix</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="absolute bottom-32 right-0 z-20 flex items-center">
-            <button id="mute-btn" class="border border-gray-400 text-gray-300 p-3 rounded-full hover:bg-white/10 transition mr-4 backdrop-blur-md">
-                <i class="fas fa-volume-mute text-lg"></i>
-            </button>
-            <div class="bg-gray-800/80 border-l-[3px] border-white text-white px-4 py-2 text-lg font-medium backdrop-blur-md">
-                16+
-            </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Main Content -->
-    <main class="relative z-20 -mt-8 pb-10">
-        <!-- Reusable structure for rows -->
-        <div id="main-content"></div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-netflix text-gray-400 py-16">
-        <div class="container mx-auto px-4 md:px-12 max-w-5xl">
-            <!-- Social -->
-            <div class="flex space-x-6 mb-8 text-2xl text-white">
-                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-youtube"></i></a>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-sm">
-                <div>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="hover:underline">Audio Description</a></li>
-                        <li><a href="#" class="hover:underline">Investor Relations</a></li>
-                        <li><a href="#" class="hover:underline">Legal Notices</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="hover:underline">Help Center</a></li>
-                        <li><a href="#" class="hover:underline">Jobs</a></li>
-                        <li><a href="#" class="hover:underline">Cookie Preferences</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="hover:underline">Gift Cards</a></li>
-                        <li><a href="#" class="hover:underline">Terms of Use</a></li>
-                        <li><a href="#" class="hover:underline">Corporate Information</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="hover:underline">Media Center</a></li>
-                        <li><a href="#" class="hover:underline">Privacy</a></li>
-                        <li><a href="#" class="hover:underline">Contact Us</a></li>
-                    </ul>
+        <!-- Dynamic Hero Section -->
+        <section class="hero relative w-full h-[85vh] transition-all duration-1000" id="hero-section">
+            <div class="absolute inset-0 bg-gradient-to-r from-netflix via-netflix/60 to-transparent z-10 w-3/4 md:w-1/2"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-netflix to-transparent z-10"></div>
+            
+            <div class="container mx-auto px-4 md:px-12 h-full flex flex-col justify-center relative z-20 transition-opacity duration-500" id="hero-content">
+                <div class="max-w-xl md:max-w-2xl pt-24 md:pt-32">
+                    <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg tracking-tight">Loading...</h1>
+                    <div class="flex items-center space-x-4 mb-4 text-sm font-bold drop-shadow-md">
+                        <span class="text-green-500" id="hero-match">98% Match</span>
+                        <span class="border border-white/40 px-2 py-0.5 rounded text-white/90" id="hero-maturity">16+</span>
+                        <span class="text-white/90" id="hero-duration">4 Seasons</span>
+                        <span class="border border-white/40 px-1 py-0.5 rounded text-[10px] text-white/90">HD</span>
+                    </div>
+                    <p id="hero-desc" class="text-base md:text-xl mb-8 drop-shadow-md text-gray-100 line-clamp-3">Loading description...</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-white text-black px-6 md:px-8 py-2 md:py-3 rounded md:text-xl font-bold flex items-center hover:bg-opacity-80 transition transform cursor-pointer hover:scale-105" onclick="triggerPlay('hero')">
+                            <i class="fas fa-play mr-3"></i> Play
+                        </button>
+                        <button class="bg-gray-500 bg-opacity-70 text-white px-6 md:px-8 py-2 md:py-3 rounded md:text-xl font-bold flex items-center hover:bg-opacity-50 cursor-pointer transition transform hover:scale-105 backdrop-blur-sm" onclick="openTrailerModal('hero')">
+                            <i class="fas fa-info-circle mr-3"></i> More Info
+                        </button>
+                    </div>
                 </div>
             </div>
             
-            <button class="border border-gray-600 px-4 py-2 flex items-center hover:border-white transition mb-6 text-sm">
-                Service Code
-            </button>
-            <p class="mt-4 text-xs text-gray-500">&copy; 1997-2026 Netflix, Inc.</p>
-        </div>
-    </footer>
+            <div class="absolute bottom-16 md:bottom-24 right-0 z-20 flex items-center">
+                <button id="mute-btn" class="border border-gray-400 cursor-pointer text-gray-300 p-3 rounded-full hover:bg-white/10 transition mr-4 backdrop-blur-md hidden md:block">
+                    <i class="fas fa-volume-up text-lg"></i>
+                </button>
+                <div class="bg-gray-800/80 border-l-[3px] border-white text-white px-4 py-2 text-lg font-medium backdrop-blur-md" id="hero-age-rating">
+                    16+
+                </div>
+            </div>
+        </section>
 
-    <!-- Video Modal overlay placeholder -->
-    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center opacity-0 transition-opacity duration-300">
-        <div class="relative w-full max-w-4xl h-[60vh] bg-black border border-gray-800 rounded-lg shadow-2xl scale-95 transition-transform duration-300" id="video-modal-content">
-            <button id="close-modal" class="absolute -top-10 right-0 text-white hover:text-gray-300 text-3xl transition transform hover:rotate-90">
-                &times;
-            </button>
-            <div class="w-full h-full flex items-center justify-center bg-gray-900 overflow-hidden relative group">
-                <i class="fas fa-play text-6xl text-white/50 group-hover:text-netflixRed transition duration-300 cursor-pointer"></i>
-                <div class="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-black to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div class="h-1 bg-gray-600 w-full mb-3 rounded overflow-hidden">
-                        <div class="h-full bg-netflixRed w-1/3"></div>
+        <!-- Main Content (Rows / Search) -->
+        <main class="relative z-20 -mt-8 pb-10 min-h-[50vh]">
+            <div id="search-results-container" class="hidden container mx-auto px-4 md:px-12 pt-8">
+                <h2 class="text-2xl text-gray-500 mb-6 font-medium">Search Results for "<span id="search-query" class="text-white"></span>"</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-2 gap-y-10" id="search-grid"></div>
+                <div id="no-results" class="hidden text-center text-gray-400 mt-20">
+                    <p class="text-xl">Your search for "<span id="no-search-query" class="text-white"></span>" did not have any matches.</p>
+                    <p class="mt-4">Suggestions:</p>
+                    <ul class="mt-2 text-sm space-y-1">
+                        <li>Try different keywords</li>
+                        <li>Looking for a movie or TV show?</li>
+                        <li>Try using a movie, TV show title, an actor or director</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="main-content"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-netflix text-gray-400 py-16">
+            <div class="container mx-auto px-4 md:px-12 max-w-5xl">
+                <div class="flex space-x-6 mb-8 text-2xl text-white">
+                    <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition hover:-translate-y-1 transform"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-sm">
+                    <div><ul class="space-y-4"><li><a href="#" class="hover:underline">Audio Description</a></li><li><a href="#" class="hover:underline">Investor Relations</a></li><li><a href="#" class="hover:underline">Legal Notices</a></li></ul></div>
+                    <div><ul class="space-y-4"><li><a href="#" class="hover:underline">Help Center</a></li><li><a href="#" class="hover:underline">Jobs</a></li><li><a href="#" class="hover:underline">Cookie Preferences</a></li></ul></div>
+                    <div><ul class="space-y-4"><li><a href="#" class="hover:underline">Gift Cards</a></li><li><a href="#" class="hover:underline">Terms of Use</a></li><li><a href="#" class="hover:underline">Corporate Information</a></li></ul></div>
+                    <div><ul class="space-y-4"><li><a href="#" class="hover:underline">Media Center</a></li><li><a href="#" class="hover:underline">Privacy</a></li><li><a href="#" class="hover:underline">Contact Us</a></li></ul></div>
+                </div>
+                <button class="border border-gray-600 px-4 py-2 flex items-center hover:border-white transition mb-6 text-sm">Service Code</button>
+                <p class="mt-4 text-xs text-gray-500">&copy; 1997-2026 Netflix, Inc. - <span class="text-white">Portfolio Project</span></p>
+            </div>
+        </footer>
+
+        <!-- Info/Trailer Modal Overlay -->
+        <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center opacity-0 transition-opacity duration-300">
+            <div class="relative w-full max-w-5xl h-[70vh] md:h-[80vh] bg-[#181818] border border-gray-800 rounded-lg shadow-2xl scale-95 transition-transform duration-300 flex flex-col" id="video-modal-content">
+                <button id="close-modal" class="absolute -top-12 right-0 md:-right-10 text-white hover:text-gray-300 text-3xl transition transform hover:rotate-90 z-50 focus:outline-none">
+                    &times;
+                </button>
+                <div class="w-full h-2/3 bg-black relative rounded-t-lg overflow-hidden flex-shrink-0 group">
+                    <div id="youtube-container" class="w-full h-full pointer-events-none"></div>
+                    <!-- Play Overlay Mask -->
+                    <div class="absolute inset-0 bg-transparent flex items-end p-6 bg-gradient-to-t from-[#181818] to-transparent">
+                        <button class="bg-white text-black px-6 py-2 rounded font-bold flex items-center hover:bg-opacity-80 transition transform hover:scale-105" id="modal-play-btn">
+                            <i class="fas fa-play mr-2"></i> Play Full Episode
+                        </button>
                     </div>
-                    <div class="flex justify-between items-center text-white">
-                        <div class="flex space-x-4">
-                            <i class="fas fa-pause cursor-pointer"></i>
-                            <i class="fas fa-volume-up cursor-pointer"></i>
+                </div>
+                <div class="p-6 md:p-10 flex flex-col md:flex-row gap-8 overflow-y-auto">
+                    <div class="md:w-2/3">
+                        <h3 id="modal-title" class="text-3xl font-bold text-white mb-4">Movie Title</h3>
+                        <div class="flex items-center space-x-4 text-sm mb-6 font-bold">
+                            <span class="text-green-500" id="modal-match">98% Match</span>
+                            <span class="border border-gray-600 px-1 text-gray-300 rounded" id="modal-maturity">16+</span>
+                            <span class="text-gray-300" id="modal-duration">2022</span>
+                            <span class="border border-gray-600 px-1 text-[10px] rounded text-gray-300">HD</span>
                         </div>
-                        <div class="flex space-x-4">
-                            <i class="fas fa-expand cursor-pointer"></i>
+                        <p id="modal-desc" class="text-gray-200 text-lg leading-relaxed">Movie description goes here.</p>
+                    </div>
+                    <div class="md:w-1/3 text-sm text-gray-400 space-y-4">
+                        <p><span class="text-gray-600">Cast:</span> <span id="modal-cast" class="text-gray-300">Actor 1, Actor 2</span></p>
+                        <p><span class="text-gray-600">Genres:</span> <span id="modal-genre" class="text-gray-300">Thrillers, Action</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Browse View -->
+
+    <!-- 3. FULLSCREEN VIDEO PLAYER INTERFACE -->
+    <div id="player-view" class="hidden fixed inset-0 bg-black z-[300] transition-opacity duration-300 opacity-0 flex-col overflow-hidden">
+        <!-- Main playback window simulating a video -->
+        <div class="relative w-full h-full group" id="player-wrapper">
+            <!-- Simulated Video Element (Using Iframe without controls or just background image simulation) -->
+            <div id="fullscreen-yt" class="w-full h-full pointer-events-none transform scale-150 relative">
+                <!-- Loaded lazily via JS -->
+            </div>
+            
+            <!-- Controls Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-6">
+                <!-- Top Header -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-6">
+                        <button id="close-player-btn" class="text-white hover:text-white/70 transition text-4xl" onclick="closePlayer()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                    <div class="text-center"></div>
+                    <div>
+                        <button class="text-white/80 hover:text-white transition text-2xl flex items-center space-x-2">
+                           <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Bottom Controls Region -->
+                <div>
+                    <!-- Netflix skip intro -->
+                    <div class="flex justify-end mb-6 mr-10">
+                        <button class="border border-white bg-black/50 hover:bg-white hover:text-black transition px-4 py-2 text-sm font-bold uppercase rounded hidden" id="skip-intro-btn">Skip Intro</button>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h2 id="player-video-title" class="text-2xl font-bold text-white tracking-widest uppercase shadow-md">Stranger Things</h2>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-600/50 h-1 cursor-pointer relative group-hover:h-1.5 transition-all mb-4 mt-2" id="play-progress-bar">
+                        <!-- Loaded Progress -->
+                        <div class="bg-gray-400/50 h-full w-2/3 absolute left-0 top-0"></div>
+                        <!-- Current Time Progress -->
+                        <div class="bg-netflixRed h-full w-1/4 absolute left-0 top-0 z-10" id="play-progress-inner"></div>
+                        <!-- Scrub Knob -->
+                        <div class="h-4 w-4 bg-netflixRed rounded-full absolute top-1/2 -mt-2 opacity-0 group-hover:opacity-100 transition shadow-lg z-20" style="left: 25%" id="play-knob"></div>
+                    </div>
+                    
+                    <!-- Controls tools -->
+                    <div class="flex justify-between items-center text-white px-4 pb-4">
+                        <!-- Left Controls -->
+                        <div class="flex items-center space-x-8 text-2xl md:text-3xl">
+                            <button class="hover:text-gray-300 transition" id="player-play-btn"><i class="fas fa-pause"></i></button>
+                            <button class="hover:text-gray-300 transition text-xl md:text-2xl"><i class="fas fa-undo-alt"></i><span class="text-xs ml-1 -mt-2">10</span></button>
+                            <button class="hover:text-gray-300 transition text-xl md:text-2xl"><i class="fas fa-redo-alt"></i><span class="text-xs ml-1 -mt-2">10</span></button>
+                            <button class="hover:text-gray-300 transition"><i class="fas fa-volume-up"></i></button>
+                        </div>
+                        
+                        <!-- Title again or Episodes button -->
+                        <div class="hidden md:block">
+                            <button class="font-bold tracking-wider hover:text-gray-300 uppercase text-lg">Next Episode</button>
+                        </div>
+
+                        <!-- Right Controls -->
+                        <div class="flex items-center space-x-8 text-2xl md:text-3xl">
+                            <button class="hover:text-gray-300 transition text-xl"><i class="fas fa-forward-step"></i></button>
+                            <button class="hover:text-gray-300 transition text-xl"><i class="fas fa-layer-group"></i></button>
+                            <button class="hover:text-gray-300 transition text-xl"><i class="far fa-comment-alt"></i></button>
+                            <button class="hover:text-gray-300 transition text-xl"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="p-6 bg-[#181818] rounded-b-lg">
-                <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Movie Title</h3>
-                <div class="flex items-center space-x-4 text-sm mb-4">
-                    <span class="text-green-500 font-bold">98% Match</span>
-                    <span class="border border-gray-600 px-1">16+</span>
-                    <span>2022</span>
-                    <span class="border border-gray-600 px-1 text-xs rounded">HD</span>
-                </div>
-            </div>
         </div>
-    </div>
+    </div> <!-- End Player View -->
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>

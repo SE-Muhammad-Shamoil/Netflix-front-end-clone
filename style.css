@@ -1,8 +1,39 @@
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
-    url("https://cdn.wallpapersafari.com/24/74/zgeTuV.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
+  transition: background-image 1s ease-in-out;
+}
+
+/* Search Input Styling */
+.search-box.active {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.search-box.active input {
+    width: 200px;
+    opacity: 1;
+    margin-left: 10px;
+    padding: 0 5px;
+}
+
+/* Skeleton loader for mock API */
+.skeleton {
+    background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    border-radius: 4px;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
 
 /* Movie row and scroller */
@@ -74,7 +105,8 @@
   overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 1vw 0;
+  padding: 3vw 0 6vw 0; /* Expanded to prevent drop-down overlap/clipping on hover */
+  margin: -2vw 0 -6vw 0; /* Counter padding to keep rows visually tight */
   gap: 0.5vw;
 }
 
@@ -88,7 +120,7 @@
 }
 
 .movie-card {
-  flex: 0 0 calc(100% / 6 - 0.5vw); /* approx 6 items on wide */
+  flex: 0 0 calc(100% / 6 - 0.5vw); 
   min-width: 180px;
   position: relative;
   border-radius: 4px;
@@ -104,14 +136,30 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
 }
 
-.movie-card img {
+.search-grid-card {
+    position: relative;
+    border-radius: 4px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    z-index: 1;
+    cursor: pointer;
+    aspect-ratio: 16/9;
+}
+
+.search-grid-card:hover {
+    transform: scale(1.3) translateY(-5%);
+    z-index: 99;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+}
+
+.movie-card img, .search-grid-card img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 4px;
   transition: border-radius 0.4s ease;
 }
 
-.movie-card:hover img {
+.movie-card:hover img, .search-grid-card:hover img {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -133,7 +181,7 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
 }
 
-.movie-card:hover .movie-info {
+.movie-card:hover .movie-info, .search-grid-card:hover .movie-info {
   opacity: 1;
   transform: scaleY(1);
 }
@@ -148,17 +196,32 @@
     transition: opacity 0.2s;
 }
 
-.movie-card:hover .card-dropdown {
+.movie-card:hover .card-dropdown, .search-grid-card:hover .card-dropdown {
     opacity: 1;
 }
 
 /* Transitions for dynamic scaling and spacing */
 .movie-row:hover .movie-card {
-    opacity: 0.6;
+    opacity: 0.4;
 }
 
 .movie-row .movie-card:hover {
     opacity: 1;
+}
+
+#search-grid:hover .search-grid-card {
+    opacity: 0.4;
+}
+
+#search-grid .search-grid-card:hover {
+    opacity: 1;
+}
+
+/* Iframe */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 @media (max-width: 1024px) {
@@ -180,6 +243,9 @@
     }
     .movie-card:hover {
         transform: scale(1.2) translateY(-5%);
+    }
+    .search-box.active input {
+        width: 150px;
     }
 }
 
